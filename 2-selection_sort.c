@@ -18,6 +18,7 @@ void selection_sort(int *array, size_t size)
 		return;
 	for (j = 0; j < size; j++)
 	{
+		minvalue = 0;
 		minvalue = j;
 		for (i = j; i < size; i++)
 		{
