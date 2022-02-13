@@ -23,6 +23,6 @@ void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 void cocktail_sort_list(listint_t **list);
-void sorting_front(listint_t **list, listint_t *aux2);
+void sorting_front(listint_t **list, listint_t *aux);
 
 #endif /*SORT_H*/
