@@ -4,52 +4,41 @@
 /**
  * sorting_backwards - sort going in backwards method
  * @list: pointer to the head pointer
- * @aux2: position which sorting gonna sort
+ * @aux: position which sorting gonna sort
  * Return: void function
  */
-void sorting_backwards(listint_t **list, listint_t *aux2)
+void sorting_backwards(listint_t **list, listint_t *aux)
 {
 	listint_t *swap = NULL;
 	int flag = 0;
 
-	while (aux2->prev)
+	while (aux->prev)
 	{
-		if (aux2->n < aux2->prev->n)
+		if (aux->n < aux->prev->n)
 		{
 			flag = 1;
 			/*swaping nodes:*/
-			swap = aux2->prev;
-			/*1) swaping aux2->prev conections*/
+			swap = aux->prev;
+			/*1) swaping aux->prev conections*/
 			if (swap->prev)
-			{
-				aux2->prev = swap->prev;
-				swap->prev->next = aux2;
-			}
+				aux->prev = swap->prev, swap->prev->next = aux;
 			else
-			{
-				aux2->prev = NULL, *list = aux2;
-			}
+				aux->prev = NULL, *list = aux;
 			/*2) swaping swap->next conections*/
-			if (aux2->next)
-			{
-				swap->next = aux2->next;
-				aux2->next->prev = swap;
-			}
+			if (aux->next)
+				swap->next = aux->next, aux->next->prev = swap;
 			else
 				swap->next = NULL;
-			/*3) swaping aux2->next and swap->prev conections*/
-			aux2->next = swap;
-			swap->prev = aux2;
+			/*3) swaping aux->next and swap->prev conections*/
+			aux->next = swap, swap->prev = aux;
 			print_list(*list);
 		}
-		if (aux2->prev)
-		{
-			if (aux2->n > aux2->prev->n)
-			aux2 = aux2->prev;
-		}
+		if (aux->prev)
+			if (aux->n > aux->prev->n)
+				aux = aux->prev;
 	}
 	if (flag)
-		sorting_front(list, aux2);
+		sorting_front(list, aux);
 	else
 		return;
 }
@@ -57,59 +46,47 @@ void sorting_backwards(listint_t **list, listint_t *aux2)
 /**
  * sorting_front - sort to the front
  * @list: pointer to the head pointer
- * @aux2: position which sorting gonna sort
+ * @aux: position which sorting gonna sort
  * Return: void function
  */
-void sorting_front(listint_t **list, listint_t *aux2)
+void sorting_front(listint_t **list, listint_t *aux)
 {
 	listint_t *swap = NULL;
 	int flag = 0;
 
-	while (aux2->next)
+	while (aux->next)
 	{
-		if (aux2->n > aux2->next->n)
+		if (aux->n > aux->next->n)
 		{
 			flag = 1;
 			/*swaping nodes:*/
-			swap = aux2->next;
-			/*1) swaping aux2->next conections*/
+			swap = aux->next;
+			/*1) swaping aux->next conections*/
 			if (swap->next)
-
-			{
-				swap->next->prev = aux2;
-				aux2->next = swap->next;
-			}
+				swap->next->prev = aux, aux->next = swap->next;
 			else
-			{
-				aux2->next = NULL;
-			}
+				aux->next = NULL;
 			/*2) swaping aux->prev conections*/
-			if (aux2->prev)
-			{
-				aux2->prev->next = swap;
-				swap->prev = aux2->prev;
-			}
+			if (aux->prev)
+				aux->prev->next = swap, swap->prev = aux->prev;
 			else
 				swap->prev = NULL, *list = swap;
-			/*3) swaping aux2->prev and swap->prev conections*/
-			aux2->prev = swap;
-			swap->next = aux2;
+			/*3) swaping aux->prev and swap->prev conections*/
+			aux->prev = swap, swap->next = aux;
 			print_list(*list);
 		}
-		if (aux2->next)
-		{
-			if (aux2->n < aux2->next->n)
-			aux2 = aux2->next;
-		}
+		if (aux->next)
+			if (aux->n < aux->next->n)
+			aux = aux->next;
 	}
 	if (flag)
-		sorting_backwards(list, aux2);
+		sorting_backwards(list, aux);
 	else
 		return;
 }
 
 /**
- * insertion_sort_list - sorts using the Insertion sort algorithm
+ * cocktail_sort_list - sorts using the Cocktail shaker sort algorithm
  * @list: the doubly linked list
  * Return: void function
  */
