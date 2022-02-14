@@ -2,15 +2,16 @@
 #include "sort.h"
 
 /**
- * quickR3ecursion - make the recursion using quick sort logic
+ * quickR3cursion - make the recursion using quick sort logic
  * @start: slice's starts
  * @end: slice's ends
- * @array: array to sort
+ * @size: size of array
+ * @slice: array to sort
  * Return: void function
  */
 void quickR3cursion(size_t start, size_t end, size_t size, int *slice)
 {
-	size_t posToSwap = start -1, pivot, pos;
+	size_t posToSwap = start - 1, pivot, pos;
 	int toSwap = 0;
 
 	if (!slice || end < 2)
